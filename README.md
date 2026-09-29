@@ -23,6 +23,9 @@ Python script to automatically migrate hundreds of repositories from one GitLab 
 
 ## Installation
 
+*It is recommended that you use a Python virtual environment.*
+
+
 1. **Install the Python dependencies:**
    ```bash
    pip install -r requirements.txt
