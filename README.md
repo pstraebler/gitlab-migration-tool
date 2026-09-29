@@ -2,6 +2,8 @@
 
 Python script to automatically migrate hundreds of repositories from one GitLab instance to another, preserving the hierarchy and all branches/tags.
 
+⚠️ *Although this script has been tested, it may produce unexpected results. Use it at your own risk.*
+
 ## Features
 
 - ✅ Migration of all repositories of a group/namespace (including subgroups)
@@ -190,60 +192,3 @@ temp_migration/            # Temporary folder (cleaned up automatically)
 - Project permissions/members are not copied
 - CI/CD variables are not migrated
 - Webhooks are not migrated
-
-## Performance
-
-For 300 repositories:
-- Duration: depends on repository size (typically a few hours)
-- Disk space: plan for ~2x the size of the largest repository
-- The script migrates projects one by one (sequentially)
-
-## Support
-
-For any question or problem, check:
-1. The detailed logs in `migration_*.log`
-2. The `.env` configuration
-3. The GitLab token permissions
-
-## Sample output
-
-```
-2024-01-15 10:30:00 - INFO - Connected to source: https://old-gitlab.com
-2024-01-15 10:30:01 - INFO - Connected to destination: https://new-gitlab.com
-2024-01-15 10:30:02 - INFO - Found 300 projects in source
-
-Found 300 projects to migrate:
-  - old-team/backend/api/service1
-  - old-team/broken-repo
-  [...]
-
-Do you want to continue? (yes/no): yes
-
-Migrate old-team/backend/api/service1? [y]es / [n]o / [a]ll remaining / [q]uit: y
-
-================================================================================
-Processing: old-team/backend/api/service1
-Destination: new-team/backend/api/service1
-Creating group: new-team/backend/api
-Creating project on destination...
-Cloning old-team/backend/api/service1...
-Pushing to destination...
-✓ Successfully migrated: old-team/backend/api/service1
-================================================================================
-
-[...]
-
-================================================================================
-Migration Summary
-================================================================================
-Total projects: 300
-Successfully migrated: 295
-Skipped (already exist): 3
-Declined by user: 0
-Failed: 2
-
-Errors:
-  - old-team/broken-repo: Clone failed
-  - old-team/huge-repo: Push failed: timeout
-================================================================================
-```
