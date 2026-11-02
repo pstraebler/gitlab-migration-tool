@@ -105,7 +105,7 @@ Result: `jdoe/project1` → `new-group/project1`. With a non-admin source token,
 ## Usage
 
 ```bash
-python migrate_gitlab.py
+python gitlab-migration-tool.py
 ```
 
 The script will:
